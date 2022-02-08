@@ -79,10 +79,21 @@ WSGI_APPLICATION = 'proton.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd147ig1skmt82o',
+        'USER': 'rdxaxvedyqrcdm',
+        'PASSWORD': '0253c48316f44ec2afdd934d921795ab8f4558a092829e91cbdc347b7c714a68',
+        'HOST': 'ec2-18-235-235-165.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
 
