@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css2/logreg.css' %}">
+    <div class="parent" style="height: 80vh">
+        <div class="wrapper">
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+            <h2>Login</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-box">
+                    <input type="text" placeholder="Enter Username" name="username" required>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Enter Password" name="password" required>
+                </div>
+                <div class="input-box button">
+                    <input type="submit" value="Login">
+                </div>
+                <div class="text">
+                    <h3>Don't have an account? <a href="{% url 'register-dashboard' %}">Sign up</a></h3>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
+
+    <!-- swiper slider cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js" integrity="sha512-1LlEYE0qExJ/GUfAJ0k2K2fB5sIvMv/q6ueo3syohvQ3ElWDQVSMUOf39cxaDWHtNu7M6lF6ZC1H6A1m3SvheA==" crossorigin="anonymous"></script>
+
+    <!-- custom javascript main.js file -->
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPG BLOG</title>
+
+    <!-- font awesome icons cdn -->
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <!-- swiper slider css file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.css" integrity="sha512-m3pAvNriL711NMlhkZHK6K4Tu2/RjtrzyjxZU8mlAbxxoDoURy27KajN1LGTLeEEPvaN12mKAgSCrYEwF9y0jA==" crossorigin="anonymous" />
+    <!-- custom style.css file -->
+    <link rel="stylesheet" href="{% static 'css2/style.css' %}">
+
+</head>
+<body>
+    
+    <!-- Header -->
+       <header id="header" class="shadow bg-light">
+           <nav class="container navbar">
+               <a href="/index.html" class="nav-brand text-dark">
+                    PROTON BLOG
+                </a>
+
+                <!-- toggle button -->
+                <button class="toggle-button">
+                    <span><i class="fas fa-bars"></i></span>
+                </button>
+
+                <!-- collapse on toggle button click -->
+                <div class="collapse">
+                    <ul class="navbar-nav">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'blog-home' %}" class="nav-link">Home</a>
+                            <!-- <a href="#" class="nav-link">Blog</a> -->
+                            <!-- <a href="#" class="nav-link">Pages</a> -->
+                            <a href="{% url 'all_categories' %}" class="nav-link">Categories</a>
+                            <!-- <a href="#" class="nav-link">About</a>
+                            <a href="#" class="nav-link">Contact</a> -->
+                            <a href="{% url 'create-post' %}" class="nav-link">Add Post</a>
+                            <a href="{% url 'add_category' %}" class="nav-link">Add Category</a>
+                            <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+                            <a href="#" class="nav-link">{{ user.username }}</a>
+                        {% else %}
+                            <a href="{% url 'blog-home' %}" class="nav-link">Home</a>
+                            <a href="{% url 'dashboard-login' %}" class="nav-link">Login</a>
+                            <a href="{% url 'register-dashboard' %}" class="nav-link">Register</a>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                  <!-- collapse on toggle button click -->
+                  {% if user.is_authenticated %}
+                    <div class="collapse">
+                        <ul class="navbar-nav">
+                                
+                                <a href="#" class="nav-link"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="nav-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="nav-link"><i class="fab fa-instagram"></i></a>
+                                
+                        </ul>
+                    </div>
+                {% endif %}
+           </nav>
+       </header>
+       {% block content %}
+       {% endblock content %}
+       {% if user.is_authenticated %}
+        <!-- footer -->
+       <footer id="footer">
+        <div class="container">
+            <div class="row mb-3">
+                <div class="col-3">
+                    <h2 class="footer-title secondary-title">About Us</h2>
+
+                    <div class="secondary-title text-secondary">
+                         <p class="mt-2 ">
+                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                             Deserunt quis voluptate alias illum modi tenetur, iste voluptatem illo. Accusantium, corrupti!
+                         </p>
+                         
+                         <address>
+                             <i class="fas fa-map-marker-alt text-primary"></i> 
+                             5 South Main Street Los Angeles, ZZ-96110 USA
+                         </address>
+
+                         <div class="phone">
+                             <i class="fas fa-mobile text-primary"></i> 
+                             125-896-485
+                         </div>
+
+                         <div class="email">
+                             <i class="fas fa-envelope text-primary"></i> 
+                             dailysupport@gmail.com
+                         </div>
+
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h2 class="footer-title secondary-title">Feature Post</h2>
+
+                    <div class="feature-post">
+                        <div class="flex-item">
+                            <article class="article">
+                                <div class="d-flex">
+                                    <a href="#">
+                                        <img src="{% static 'images/assets/img9.jpg' %}" class="object-fit px-1" alt="">
+                                        <div class="px-1">
+                                            <a href="#" class="text-title display-2 text-dark">
+                                             Looking for some feedback for this rejected track
+                                             technology
+                                            </a>
+                                            <p class="secondary-title text-secondary display-3">
+                                                 <span><i class="far fa-clock text-primary"></i> Clock Wed 02, 2021 </span>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="flex-item">
+                         <article class="article">
+                             <div class="d-flex">
+                                 <a href="#">
+                                     <img src="{% static 'images/assets/img1.jpg' %}" class="object-fit px-1" alt="">
+                                     <div class="px-1">
+                                         <a href="#" class="text-title display-2 text-dark">
+                                          Looking for some feedback for this rejected track
+                                          technology
+                                         </a>
+                                         <p class="secondary-title text-secondary display-3">
+                                              <span><i class="far fa-clock text-primary"></i> Clock Wed 02, 2021 </span>
+                                         </p>
+                                     </div>
+                                 </a>
+                             </div>
+                         </article>
+                          </div>
+                          <div class="flex-item">
+                             <article class="article">
+                                 <div class="d-flex">
+                                     <a href="#">
+                                         <img src="{% static 'images/assets/img2.jpg' %}" class="object-fit px-1" alt="">
+                                         <div class="px-1">
+                                             <a href="#" class="text-title display-2 text-dark">
+                                              Looking for some feedback for this rejected track
+                                              technology
+                                             </a>
+                                             <p class="secondary-title text-secondary display-3">
+                                                  <span><i class="far fa-clock text-primary"></i> Clock Wed 02, 2021 </span>
+                                             </p>
+                                         </div>
+                                     </a>
+                                 </div>
+                             </article>
+                         </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                     <h2 class="footer-title secondary-title">Tags</h2>
+
+                     <div class="tags">
+                         <div class="d-flex flex-wrap">
+                             <a href="#" class="nav-link btn bg-light">Travel</a>
+                             <a href="#" class="nav-link btn bg-light">Food</a>
+                             <a href="#" class="nav-link btn bg-light">Lifestyle</a>
+                             <a href="#" class="nav-link btn bg-light">Techonogy</a>
+                             <a href="#" class="nav-link btn bg-light">Fashion</a>
+                         </div>
+                     </div>
+
+                     <h2 class="footer-title secondary-title mt-2">Social</h2>
+
+                     <div class="tags social">
+                         <div class="d-flex flex-wrap">
+                             <a href="#" class="nav-link btn bg-light"><i class="fab fa-facebook-f"></i></a>
+                             <a href="#" class="nav-link btn bg-light"><i class="fab fa-twitter"></i></a>
+                             <a href="#" class="nav-link btn bg-light"><i class="fab fa-instagram"></i></a>
+                             <a href="#" class="nav-link btn bg-light"><i class="fab fa-dribbble"></i></a>
+                         </div>
+                     </div>
+
+                </div>
+            </div>
+
+            <!-- copyrights  -->
+            <div class="copyrights">
+                <p class="text-center text-secondary display-2">
+                     © 2021 <a href="#" class="text-primary">Dailytuition</a> - Personal Blog Theme. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+ <!-- .footer -->
+
+
+ <!-- masonry libray for horizontal grid -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js" integrity="sha512-JRlcvSZAXT8+5SQQAvklXGJuxXTouyq8oIMaYERZQasB8SBDHZaUbeASsJWpk0UUrf89DP3/aefPPrlMR1h1yQ==" crossorigin="anonymous"></script>
+
+ <!-- swiper slider cdn -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.5/swiper-bundle.min.js" integrity="sha512-1LlEYE0qExJ/GUfAJ0k2K2fB5sIvMv/q6ueo3syohvQ3ElWDQVSMUOf39cxaDWHtNu7M6lF6ZC1H6A1m3SvheA==" crossorigin="anonymous"></script>
+
+ <!-- custom javascript main.js file -->
+ <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
+       {% endif %}
+</body>
+</html>
+    <!-- .Header -->

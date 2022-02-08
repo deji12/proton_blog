@@ -1,0 +1,39 @@
+{% extends 'blog/nav.html' %}
+
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <center>
+            <h1>{{message }}</h1>
+            <br><br>
+        </center>
+    {% endfor %}
+{% endif %}
+    <div class="form">
+        <!-- <h1>Create a Post</h1> -->
+        <!-- <br><br> -->
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }} 
+            {{ form.as_p }}  
+            <input type="submit" value="Publish" class="input">
+        </form>
+    </div>
+
+<style>
+    .input {
+        padding: 15px; 
+        /* width: 300px; */
+        background-color: dodgerblue; 
+        color: #fff; border-radius: 5px; 
+        border: none;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+{% endblock content %}

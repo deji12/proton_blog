@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css2/logreg.css' %}">
+    <div class="parent">
+        <div class="wrapper">
+            <h2>Registeration</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input-box">
+                    <input type="text" placeholder="Enter Username" name="username" required>
+                </div>
+                <div class="input-box">
+                    <input type="text" placeholder="Enter your first name" name="fname" required>
+                </div>
+                <div class="input-box">
+                    <input type="text" placeholder="Enter your last name" name="lname" required>
+                </div>
+                <div class="input-box">
+                    <input type="email" placeholder="Enter your email address" name="email" required>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Create password" name="pass1" required>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Confirm password" name="pass2" required>
+                </div>
+                <div class="input-box button">
+                    <input type="submit" value="Register">
+                </div>
+                <div class="text">
+                    <h3>Already have an account? <a href="{% url 'dashboard-login' %}">Login</a></h3>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
