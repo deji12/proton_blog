@@ -5,22 +5,6 @@ from ckeditor.fields import RichTextField
 from django.urls import reverse
 from taggit.managers import TaggableManager
 
-class category(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-         return self.name
-
-
-    def get_absolute_url(self):
-        return reverse('blog-home')
-
-choices = category.objects.all().values_list('name', 'name')
-choice_list = []
-
-for item in choices:
-    choice_list.append(item)
-
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=10000000)
@@ -31,7 +15,7 @@ class Post(models.Model):
     #tags = TaggableManager()
     image = models.ImageField(blank=True, null=True, upload_to='image/')
     author_image = models.ImageField(blank=True, null=True, upload_to='author/', default='images/tpg.jpg')
-    category = models.CharField(max_length=128, choices = choice_list, default='Python')
+    category = models.CharField(max_length=128, default='Python')
     # category = models.CharField(max_length=255, default='Python')
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
@@ -54,6 +38,16 @@ class Comment(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.post.title, self.name)
+
+class category(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+         return self.name
+
+
+    def get_absolute_url(self):
+        return reverse('blog-home')
 
 # class ReplyComment(models.Model):
 #     com = models.ForeignKey(Comment, on_delete=models.CASCADE)

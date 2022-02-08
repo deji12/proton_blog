@@ -89,10 +89,10 @@ WSGI_APPLICATION = 'proton.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd147ig1skmt82o',
-        'USER': 'rdxaxvedyqrcdm',
-        'PASSWORD': '0253c48316f44ec2afdd934d921795ab8f4558a092829e91cbdc347b7c714a68',
-        'HOST': 'ec2-18-235-235-165.compute-1.amazonaws.com',
+        'NAME': 'd8bbhqg5e6etp6',
+        'USER': 'uidmyfijwrzlhu',
+        'PASSWORD': 'cb93f6a04b65a07a389aceec3226762ee28d51f12409ece88603618ecc96b05d',
+        'HOST': 'ec2-75-101-141-195.compute-1.amazonaws.com',
         'PORT': '5432'
     }
 }
