@@ -79,7 +79,7 @@
                                                 </a>
                                             </div>
                                             <div class="card-body text-center px-1">
-                                                <a href="{{ post.get_absolute_url }}" class="text-title display-1 text-dark">
+                                                <a href="{% url 'article-page' post.slug %}" class="text-title display-1 text-dark">
                                                    {{ post.title }}
                                                 </a>
                                                 <p class="secondary-title text-secondary display-3">
@@ -222,9 +222,10 @@
                                                     <img src="{{ post.image.url }}" class="object-fit px-1" alt="">
                                                 {% endif %}
                                                 <div class="px-1">
-                                                    <a href="{{ post.get_absolute_url }}" class="text-title display-2 text-dark">
+                                                    <a href="{% url 'article-page' post.slug %}" class="text-title display-2 text-dark">
                                                         {{ post.title }}
                                                     </a>
+                                                    <!-- footerr link well -->
                                                     <p class="secondary-title text-secondary display-3">
                                                             <span><i class="far fa-clock text-primary"></i> {{ post.created }} </span>
                                                     </p>

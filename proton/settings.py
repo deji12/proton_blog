@@ -132,10 +132,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -152,7 +151,34 @@ EMAIL_PORT = 587
 
 LOGIN_URL = 'dashboard-login'
 
-STATIC_ROOT = os.path.join(BASE_DIR,  'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+# STATIC_ROOT = os.path.join(BASE_DIR,  'staticfiles')
+
 
 django_heroku.settings(locals())
+
+
+# AWS_ACCESS_KEY_ID = 'AKIARETVYQK3CDYTUHPG'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'django-blog-2'
+# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# AWS_DEFAULT_ACL = 'public-read'
+
+AWS_ACCESS_KEY_ID = 'AKIARETVYQK3BVJC5KWR'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'dj-blog-2'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+AWS_DEFAULT_ACL = None
+
+AWS_LOCATION = 'static'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+DEFAULT_FILE_STORAGE = 'core.storages.MediaStore'
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

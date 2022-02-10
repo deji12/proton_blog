@@ -72,14 +72,14 @@
                                     <article class="article">
                                         <div class="card">
                                             <div class="overflow-img">
-                                                <a href="{{ post.get_absolute_url }}">
+                                                <a href="{% url 'article-page' post.slug %}">
                                                     {% if post.image %}
                                                         <img src="{{ post.image.url }}" class="img-fluid" alt="">
                                                     {% endif %}
                                                 </a>
                                             </div>
                                             <div class="card-body text-center px-1">
-                                                <a href="{{ post.get_absolute_url }}" class="text-title display-1 text-dark">
+                                                <a href="{% url 'article-page' post.slug %}" class="text-title display-1 text-dark">
                                                    {{ post.title }}
                                                 </a>
                                                 <p class="secondary-title text-secondary display-3">
@@ -142,12 +142,12 @@
                                 <div class="flex-item">
                                     <article class="article">
                                         <div class="d-flex">
-                                            <a href="{{ post.get_absolute_url }}">
+                                            <a href="{% url 'article-page' post.slug %}">
                                                 {% if post.image %}
                                                     <img src="{{ post.image.url }}" class="object-fit px-1" alt="">
                                                 {% endif %}
                                                 <div class="px-1">
-                                                    <a href="{{ post.get_absolute_url }}" class="text-title display-2 text-dark">
+                                                    <a href="{% url 'article-page' post.slug %}" class="text-title display-2 text-dark">
                                                         {{ post.title }}
                                                     </a>
                                                     <p class="secondary-title text-secondary display-3">
