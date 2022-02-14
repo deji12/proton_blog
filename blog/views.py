@@ -200,7 +200,8 @@ def Categories(request):
     categories = Post.objects.all()
     cats = []
     for i in categories:        
-        cats.append(i.category)     
+        cats.append(i.category)   
+        cats.append(i.category2)  
     
     for j in cats:
         counted = cats.count(j)

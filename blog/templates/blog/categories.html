@@ -32,19 +32,19 @@
                         {% if cats %}                     
                             {% for post in cats %}                            
                                 <div class="grid-item">
-                                    <h1>{{ post.category }} Category</h1>
+                                    <!-- <center><h1>{{ post.category }} Category</h1></center> -->
                                     <article class="article">                                       
                                         <div class="card">
                                             
                                             <div class="overflow-img">
-                                                <a href="{{ post.get_absolute_url }}">
+                                                <a href="{% url 'article-page' post.slug %}">
                                                     {% if post.image %}
                                                         <img src="{{ post.image.url }}" class="img-fluid" alt="">
                                                     {% endif %}
                                                 </a>
                                             </div>
                                             <div class="card-body text-center px-1">
-                                                <a href="{{ post.get_absolute_url }}" class="text-title display-1 text-dark">
+                                                <a href="{% url 'article-page' post.slug %}" class="text-title display-1 text-dark">
                                                    {{ post.title }}
                                                 </a>
                                                 <p class="secondary-title text-secondary display-3">

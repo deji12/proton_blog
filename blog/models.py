@@ -16,6 +16,7 @@ class Post(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to='image/')
     author_image = models.ImageField(blank=True, null=True, upload_to='author/', default='images/tpg.jpg')
     category = models.CharField(max_length=128, default='Python')
+    category2 = models.CharField(max_length=128, default='Git')
     # category = models.CharField(max_length=255, default='Python')
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
@@ -40,6 +41,17 @@ class Comment(models.Model):
         return '%s - %s' % (self.post.title, self.name)
 
 class category(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+         return self.name
+
+
+    def get_absolute_url(self):
+        return reverse('blog-home')
+
+
+class category2(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
