@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TPG BLOG</title>
-
+    {% if cname %}
+        <title>TPG Blog | {{cname}}</title>
+    {% else %}
+        <title>TPG Blog</title>
+    {% endif %}
     <!-- font awesome icons cdn -->
     {% load static %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
@@ -34,7 +37,7 @@
                         {% if user.is_authenticated %}
                            
                             <a href="{% url 'blog-home' %}" class="nav-link">Home</a>
-                            <a href="#" class="nav-link">Categories</a>                       
+                            <a href="{% url 'all_categories' %}" class="nav-link">Categories</a>                       
                             
                             <!-- <a href="{% url 'create-post' %}" class="nav-link">Add Post</a> -->
                             <a href="{% url 'add_category' %}" class="nav-link">Add Category</a>

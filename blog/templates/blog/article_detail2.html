@@ -85,9 +85,9 @@
                                     <a href="#" class="link display-2 text-secondary px-1">
                                         <i class="fas fa-clock text-primary"></i>  {{ data.created }}
                                     </a>
-                                    <!-- <a href="#" class="link display-2 text-secondary px-1">
-                                        <i class="fas fa-comments text-primary"></i> 12
-                                    </a> -->
+                                    {% for i in coms %}
+                                        <span><i class="fas fa-comments text-primary"></i> {{ i }}</span>
+                                    {% endfor %}
                                 </div>
 
                             </div>
@@ -325,6 +325,9 @@
                                             </a>
                                             <p class="secondary-title text-secondary display-3">
                                                     <span><i class="far fa-clock text-primary"></i> {{ post.created }} </span>
+                                                    {% for i in coms %}
+                                                        <span><i class="fas fa-comments text-primary"></i> {{ i }}</span>
+                                                    {% endfor %}
                                             </p>
                                         </div>
                                     </a>

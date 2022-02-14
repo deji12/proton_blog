@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TPG BLOG</title>
 
     <!-- font awesome icons cdn -->
     {% load static %}
@@ -29,8 +28,9 @@
                     <div class="container">
                         <div class="grid">
                             <!-- article -->       
-                        {% if cats %}                     
-                            {% for post in cats %}                            
+                                 
+                        {% if cats2 %}            
+                            {% for post in cats2 %}                            
                                 <div class="grid-item">
                                     <!-- <center><h1>{{ post.category }} Category</h1></center> -->
                                     <article class="article">                                       
@@ -49,6 +49,35 @@
                                                 </a>
                                                 <p class="secondary-title text-secondary display-3">
                                                     <span><i class="far fa-clock text-primary"></i> {{ post.created }} </span>
+                                                    {% for i in coms %}
+                                                        <span><i class="far fa-comments text-primary"></i> {{ i }}</span>
+                                                    {% endfor %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            {% endfor %}
+                        {% elif cats %}
+                            {% for post in cats %}                            
+                                <div class="grid-item">
+                                    <!-- <center><h1>{{ post.category }} Category</h1></center> -->
+                                    <article class="article">                                       
+                                        <div class="card">
+                                            
+                                            <div class="overflow-img">
+                                                <a href="{% url 'article-page' post.slug %}">
+                                                    {% if post.image %}
+                                                        <img src="{{ post.image.url }}" class="img-fluid" alt="">
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                            <div class="card-body text-center px-1">
+                                                <a href="{% url 'article-page' post.slug %}" class="text-title display-1 text-dark">
+                                                {{ post.title }}
+                                                </a>
+                                                <p class="secondary-title text-secondary display-3">
+                                                    <span><i class="far fa-clock text-primary"></i> {{ post.created }} </span>
                                                     <!-- <span><i class="far fa-comments text-primary"></i> 12</span> -->
                                                 </p>
                                             </div>
@@ -57,6 +86,7 @@
                                 </div>
                             {% endfor %}
                        
+                        {% endif %}
                             <!-- .article -->
                             <!-- article -->
                             <!-- {% for post in posts %}
@@ -473,9 +503,7 @@
 
     <!-- custom javascript main.js file -->
     <script src="{% static 'js/main.js' %}"></script>
-    {% else %}
-        <h1>There is no such Category!</h1>
-    {% endif %}
+    
 </body>
 </html>
 {% endblock content %}

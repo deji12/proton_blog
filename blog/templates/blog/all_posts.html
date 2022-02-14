@@ -84,7 +84,9 @@
                                                 </a>
                                                 <p class="secondary-title text-secondary display-3">
                                                     <span><i class="far fa-clock text-primary"></i> {{ post.created }} </span>
-                                                    <span><i class="far fa-comments text-primary"></i> 12</span>
+                                                    {% for i in coms %}
+                                                        <span><i class="far fa-comments text-primary"></i> {{ i }}</span>
+                                                    {% endfor %}
                                                 </p>
                                             </div>
                                         </div>
@@ -151,7 +153,10 @@
                                                         {{ post.title }}
                                                     </a>
                                                     <p class="secondary-title text-secondary display-3">
-                                                            <span><i class="far fa-clock text-primary"></i> {{ post.created }} </span>
+                                                        <span><i class="far fa-clock text-primary"></i> {{ post.created }} </span>
+                                                        {% for i in coms %}
+                                                            <span><i class="far fa-comments text-primary"></i> {{ i }}</span>
+                                                        {% endfor %}
                                                     </p>
                                                 </div>
                                             </a>

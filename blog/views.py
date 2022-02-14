@@ -29,12 +29,23 @@ def BlogHome(request):
         counted = cats.count(j)
         if counted > 1:
             cats.remove(j)  
+
+    fin = []
+    for i in Post.objects.all().order_by('-created'):
+        data = Post.objects.get(id=i.id)
+        comments = data.comments.all()
+        fi = 0
+        for i in comments:
+            fi+=1         
+        
+        fin.append(fi) 
     
 
     context = {
         'posts': post,
         'categories': cats,
-        'feat': feautured_post
+        'feat': feautured_post,
+        'coms': fin
     }
     return render(request, 'blog/index.html', context)
 
@@ -49,11 +60,23 @@ def AllPost(request):
     for j in cats:
         counted = cats.count(j)
         if counted > 1:
-            cats.remove(j)  
+            cats.remove(j) 
+
+    fin = []
+    for i in Post.objects.all().order_by('-created'):
+        data = Post.objects.get(id=i.id)
+        comments = data.comments.all()
+        fi = 0
+        for i in comments:
+            fi+=1         
+        
+        fin.append(fi) 
+
     context = {
         'posts': post,
         'categories': cats,
-        'feat': feautured_post
+        'feat': feautured_post,
+        'coms': fin
     }
     return render(request, 'blog/all_posts.html', context)
 
@@ -138,12 +161,23 @@ def AD(request, slug):
         if counted > 1:
             cats.remove(j)  
 
+    fin = []
+    for i in Post.objects.all().order_by('-created'):
+        data = Post.objects.get(slug=slug)
+        comments = data.comments.all()
+        fi = 0
+        for i in comments:
+            fi+=1         
+        
+        fin.append(fi)
+
     context = {
         'data': data,
         'posts': data2,
         'feat': feautured_post,
         'categories': cats,
-        'comments': comments
+        'comments': comments,
+        'coms': fin
     }
     return render(request, 'blog/article_detail2.html', context)
 
@@ -192,13 +226,31 @@ def AddCat(request):
     return render(request, 'blog/add_category.html', context)
 
 def CategoryView(request, cats):
-    category_posts = Post.objects.filter(category=cats)
-    return render(request, 'blog/categories.html', {'cats': category_posts})
+    category_posts = Post.objects.filter( category=cats)
+    category_posts2 = Post.objects.filter( category2=cats) 
+    
+    fin = []
+    for i in Post.objects.all().order_by('-created'):
+        data = Post.objects.get(slug=i.slug)
+        comments = data.comments.all()
+        fi = 0
+        for i in comments:
+            fi+=1         
+        
+        fin.append(fi)
+    context = {
+        'cats': category_posts, 
+        'cats2': category_posts2, 
+        'cname':cats,
+        'coms': fin
+        }
+
+    return render(request, 'blog/categories.html', context)
 
 def Categories(request):
     feautured_post= Post.objects.all().order_by('-created')[:3]
     post = Post.objects.all().order_by('-created')[:10]
-    categories = Post.objects.all()
+    categories = Post.objects.all() 
     cats = []
     for i in categories:        
         cats.append(i.category)   
