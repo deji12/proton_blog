@@ -22,7 +22,8 @@ def BlogHome(request):
     post = Post.objects.all().order_by('-created')[:10]
     cats = []
     for i in categories:        
-        cats.append(i.category)     
+        cats.append(i.category)    
+        cats.append(i.category2)    
     
     for j in cats:
         counted = cats.count(j)
