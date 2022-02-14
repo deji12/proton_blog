@@ -71,6 +71,7 @@ def AllPost(request):
             fi+=1         
         
         fin.append(fi) 
+    print(fin)
 
     context = {
         'posts': post,
@@ -161,15 +162,14 @@ def AD(request, slug):
         if counted > 1:
             cats.remove(j)  
 
-    fin = []
-    for i in Post.objects.all().order_by('-created'):
-        data = Post.objects.get(slug=slug)
-        comments = data.comments.all()
-        fi = 0
-        for i in comments:
-            fi+=1         
+    #number of comments
+    data = Post.objects.get(slug=slug)
+    comments = data.comments.all()
+    fi = 0
+    for i in comments:
+        fi+=1         
         
-        fin.append(fi)
+        
 
     context = {
         'data': data,
@@ -177,7 +177,7 @@ def AD(request, slug):
         'feat': feautured_post,
         'categories': cats,
         'comments': comments,
-        'coms': fin
+        'coms': fi
     }
     return render(request, 'blog/article_detail2.html', context)
 

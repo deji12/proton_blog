@@ -85,9 +85,9 @@
                                     <a href="#" class="link display-2 text-secondary px-1">
                                         <i class="fas fa-clock text-primary"></i>  {{ data.created }}
                                     </a>
-                                    {% for i in coms %}
-                                        <span><i class="fas fa-comments text-primary"></i> {{ i }}</span>
-                                    {% endfor %}
+                                    
+                                        <span><i class="fas fa-comments text-primary"></i> {{ coms }}</span>
+                                    
                                 </div>
 
                             </div>
@@ -320,14 +320,14 @@
                                             <img src="{{ post.image.url }}" class="object-fit px-1" alt="">
                                         {% endif %}
                                         <div class="px-1">
-                                            <a href="{{ post.get_absolute_url }}" class="text-title display-2 text-dark">
+                                            <a href="{% url 'article-page' post.slug %}" class="text-title display-2 text-dark">
                                                 {{ post.title }}
                                             </a>
                                             <p class="secondary-title text-secondary display-3">
                                                     <span><i class="far fa-clock text-primary"></i> {{ post.created }} </span>
-                                                    {% for i in coms %}
+                                                   
                                                         <span><i class="fas fa-comments text-primary"></i> {{ i }}</span>
-                                                    {% endfor %}
+                                                    
                                             </p>
                                         </div>
                                     </a>
