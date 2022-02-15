@@ -14,6 +14,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from collections import Counter
+from django.core.mail import EmailMessage
+from django.conf import settings
 # Create your views here.
 
 def BlogHome(request):
@@ -139,6 +141,18 @@ def AD(request, slug):
         new_comment = Comment(name=name, body=comment_body)
         new_comment.post = Post.objects.get(slug=slug)
         new_comment.save()
+
+        email_mess = EmailMessage (
+            'New Blog Post Comment',
+            f'Hi There PROTON GUY! \n This is to notify you that there has been a new comment on one of your blog posts. The details are below \n \n Blog Post: {Post.objects.get(slug=slug)} \n \n Writer: {name} \n \n The comment is: {comment_body} \n \n Have a nice day! \n \n THE PROTON GUY.',
+            settings.EMAIL_HOST_USER,
+            ['theprotonguy@yahoo.com']
+        )
+
+        email_mess.fail_silently = True
+
+        email_mess.send()
+            
         return redirect('article-page', slug=slug)    
     
 
@@ -419,6 +433,12 @@ def Admin(request):
         
         fin.append(fi)
 
+    #all emails 
+    all_emailss = []
+    all_emails = NewsletterReg.objects.all()
+    for i in all_emails:
+        all_emailss.append(i)
+
     context = {
         'num_post': number_of_posts,
         'num_comments': number_of_comments,
@@ -433,6 +453,149 @@ def Admin(request):
         'coms': fin,
     }
     return render(request, 'blog/admin.html', context)
+
+
+@login_required
+def AllEmails(request):
+
+    post = Post.objects.all()
+    post2 = Post.objects.all().order_by('-created')
+    comments = Comment.objects.all()
+    users = User.objects.all()
+
+    #number of posts
+    number_of_posts = 0
+    for i in post:
+        number_of_posts+=1    
+
+    #number of comments
+    number_of_comments = 0
+    for i in comments:
+        number_of_comments+=1
+
+    #number of clicks
+    nums = []
+    number_of_clicks = 0
+    for i in Post.objects.all().values('num_clicks'):
+        nums.append(i.get('num_clicks'))
+    
+    final = 0
+    for j in nums:
+        final+=j
+
+    #number of users
+    number_of_users = 0
+    for i in users:
+        number_of_users+=1
+
+    if request.method == 'POST':
+        search = request.POST['search']
+
+        try:
+            check = Post.objects.get(title=search)
+            name = search
+            clicks = check.num_clicks
+            dp = check.created
+
+           
+            comments = check.comments.all()
+            fi = 0
+            for i in comments:
+                fi+=1         
+                
+            
+
+            context = {
+                'title': name,
+                'clicks': clicks,
+                'dp': dp,
+                'num_post': number_of_posts,
+                'num_comments': number_of_comments,
+                'num_clicks': final,
+                'num_users': number_of_users,
+                'com': fi,
+                'check': check
+            }
+            return render(request, 'blog/search.html', context)
+        except:
+            messages.error(request, 'Post does not exist!')
+            return render(request, 'blog/search.html')
+    
+
+    #date published
+    all_date = []
+    post = Post.objects.all().order_by('-created')
+    for i in post:
+        all_date.append(i.created)
+
+    #slug 
+    # all_slug = []
+    # post = Post.objects.all().order_by('-created')
+    # for j in post:
+    #     all_slug.append(j.slug)
+
+    # for t in all_slug:
+    #     print(t)
+
+    #individual clicks
+    nums = []
+    for i in Post.objects.all().order_by('-created'):
+        nums.append(i.num_clicks)
+    
+    #top posts
+    all_slugs = []
+    post = Post.objects.all().order_by('-num_clicks')
+    for j in post:
+        all_slugs.append(j.slug)
+
+    #individual top clicks
+    nums2 = []
+    for i in Post.objects.all().order_by('-num_clicks'):
+        nums2.append(i.num_clicks)
+
+    #post and clicks 
+    nums3 = []
+    for j in Post.objects.all().order_by('-num_clicks'):
+        nums3.append(j.num_clicks)
+
+    all_slugss = []
+    post = Post.objects.all().order_by('-num_clicks')
+    for k in post:
+        all_slugss.append(k.slug)
+
+    #num comments
+    fin = []
+    for i in Post.objects.all().order_by('-created'):
+        data = Post.objects.get(id=i.id)
+        comments = data.comments.all()
+        fi = 0
+        for i in comments:
+            fi+=1         
+        
+        fin.append(fi)
+
+    #all emails 
+    all_emailss = []
+    all_emails = NewsletterReg.objects.all()
+    for i in all_emails:
+        all_emailss.append(i)
+
+    context = {
+        'num_post': number_of_posts,
+        'num_comments': number_of_comments,
+        'num_clicks': final,
+        'num_users': number_of_users,
+        'date_pub': all_date,
+        'slug': post2,
+        'clicks': nums,
+        # 'top_post': comp,
+        'top_clicks': nums2,
+        'post': post,
+        'coms': fin,
+        'emails': all_emailss
+    }
+    return render(request, 'blog/all_emails.html', context)
+
 
 @login_required
 def TopPost(request):
@@ -535,7 +698,32 @@ def WeekEmail(request):
         except:
             new_sub = NewsletterReg(name=name, email=email)
             new_sub.save()
+
+            #send to user
+            email_mess = EmailMessage (
+                'Weekly Email Registeration',
+                f'Hi There {name}! \n Thank you for registering for our weekly emails. \n \n You will be sent weekly emails on new posts, tutorials, and tech related topics! \n Have a nice day. \n \n THE PROTON GUY.',
+                settings.EMAIL_HOST_USER,
+                [email]
+            )
+
+            email_mess.fail_silently = True
+
+            #send to me
+            email_mess2 = EmailMessage (
+                'New weekly Email Registeration',
+                f'Hi There PROTON GUY! \n This is to notify you that there has been a new registeration for the weekly emails. \n \n The new registered email is: \n \n {email} \n \n Have a nice day! \n \n THE PROTON GUY.',
+                settings.EMAIL_HOST_USER,
+                ['theprotonguy@yahoo.com']
+            )
+
+            email_mess2.fail_silently = True
+
+            email_mess.send()
+            email_mess2.send()
+
             return redirect('blog-home')
+
     return render(request, 'blog/week_email.html')
 
 def AboutUs(request):    

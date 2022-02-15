@@ -42,11 +42,11 @@
           </a>
         </li>
         <li>
-          <a href="{% url 'all-emails' %}" class="active">
-            <i class='bx bx-grid-alt' ></i>
-            <span class="links_name">All Emails</span>
-          </a>
-        </li>
+            <a href="{% url 'all-emails' %}" class="active">
+              <i class='bx bx-grid-alt' ></i>
+              <span class="links_name">All Emails</span>
+            </a>
+          </li>
         <li>
           <a href="{% url 'delete-post' %}" class="active">
             <i class='bx bx-grid-alt' ></i>
@@ -131,37 +131,24 @@
 
       <div class="sales-boxes">
         <div class="recent-sales box" style="width: 100%;">
-          <div class="title">Posts Stats</div>
+          <div class="title">All Registered Emails</div>
           <div class="sales-details">
             <ul class="details">
-              <li class="topic">Slug</li>
-              {% for i in slug %}
-                <li><a href="{% url 'edit-post' i.pk %}">{{ i.slug }}</a></li>
+              <!-- <li class="topic">Emails</li> -->
+              {% for i in emails %}
+                <li><a href="#">{{ i.email }}</a></li>
               {% endfor %}
             </ul>
-            <ul class="details">
+            <!-- <ul class="details">
             <li class="topic">Clicks</li>
               {% for i in clicks %}
                 <li><a href="#">{{ i }}</a></li>
               {% endfor %}
-          </ul>
-          <ul class="details">
-            <li class="topic">Comments</li>
-              {% for i in coms %}
-                <li><a href="#">{{ i }}</a></li>
-              {% endfor %}
-          </ul>
-          
-          <ul class="details">
-            <li class="topic">Published</li>
-              {% for i in date_pub %}
-                <li><a href="#">{{ i }}</a></li>
-              {% endfor %}
-          </ul>
+          </ul> -->
           </div>
-          <div class="button">
+          <!-- <div class="button">
             <a href="#">See All</a>
-          </div>
+          </div> -->
         </div>
         <!-- <div class="top-sales box">
           <div class="title">Top Posts</div>

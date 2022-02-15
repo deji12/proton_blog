@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$($2nx88!m_@!0leho-0-e$j(qb)h&96rft-y2ds=gqtsnnl&4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -79,23 +79,23 @@ WSGI_APPLICATION = 'proton.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd96d1cm5jtivqb',
-        'USER': 'qbvxfucmaszhpg',
-        'PASSWORD': 'a2417fd7a2861f956cf7343d88d75ea0942f296f8720c92676ecc4bf9a506972',
-        'HOST': 'ec2-54-83-21-198.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'd96d1cm5jtivqb',
+#         'USER': 'qbvxfucmaszhpg',
+#         'PASSWORD': 'a2417fd7a2861f956cf7343d88d75ea0942f296f8720c92676ecc4bf9a506972',
+#         'HOST': 'ec2-54-83-21-198.compute-1.amazonaws.com',
+#         'PORT': '5432'
+#     }
+# }
 
 
 # Password validation
@@ -145,7 +145,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'adesolaayodeji53@gmail.com'
-EMAIL_HOST_PASSWORD = 'theprotonguy'
+EMAIL_HOST_PASSWORD = 'uscqexdzbdocbsht'
 EMAIL_PORT = 587
 # EMAIL_USE_TLS = False
 

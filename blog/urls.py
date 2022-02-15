@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import BlogHome, Login, Register, AdminPage, LogoutAdmin, CreatePost, ArticleDetailView, CategoryView, Categories, replycomment, AllPost, AddCat, AD, Admin, TopPost, WeekEmail, AboutUs, DeletePost, EditPost
+from .views import BlogHome, Login, Register, AdminPage, LogoutAdmin, CreatePost, ArticleDetailView, CategoryView, Categories, replycomment, AllPost, AddCat, AD, Admin, TopPost, WeekEmail, AboutUs, DeletePost, EditPost, AllEmails
 
 
 urlpatterns = [
@@ -22,5 +22,6 @@ urlpatterns = [
     path('weekly-email-register/', WeekEmail, name='week-email'),
     path('about-us/', AboutUs, name='about-us'),
     path('admin/blog/post/', DeletePost, name='delete-post'),
-    path('admin/blog/post/', EditPost, name='edit-post')
+    path('admin/blog/post/', EditPost, name='edit-post'),
+    path('admin-page/all-emails/', AllEmails, name='all-emails')
 ]
