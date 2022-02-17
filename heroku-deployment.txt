@@ -1,0 +1,56 @@
+1 Build Django project
+
+2. Install gunicorn and django_heroku
+
+3. In root directory:
+		
+		---> create file: Name: runtime.txt
+			--> write python version
+				-> get version: python --version
+					> write: python-version
+
+		---> create file: Name: Procfile
+			--> write: web gunicorn projectname.wsgi:application --log-file -
+
+4. Get all modules used in django project:
+		
+		---> write:
+			pip freeze > requirements.txt
+
+5. Go to settings.py:
+
+	At top:
+		import os
+		import django_heroku
+		import dj_database_url
+
+	At bottom:
+		configure static files:
+			---> STATIC_ROOT = os.path.join(BASE_DIR,  'staticfiles')
+			---> STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+
+		write:
+			--> django_heroku.settings(locals())
+
+6. Downlaod git:
+
+	search for download git
+		Download git
+
+	install git 
+
+7. Create an heroku account:
+	heroku.com
+
+8. create new app
+
+9. create github account
+
+10. create github repo
+
+11. git bash in project repo and follow instructions
+
+12. Go back to heroku and deploy via github
+
+13. Subscribeeeeeeeeee
+
